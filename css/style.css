@@ -596,3 +596,77 @@ main, .navbar, footer, .card, .welcome-content {
 [data-theme="dark"] .navbar a:hover {
   color: #ffb700 !important;
 }
+
+/* -----------------------------------------------------
+   MENU BURGER RESPONSIVE & Z-INDEX OPTIMISÉ
+   -----------------------------------------------------
+   - Le menu burger .hamburger s'affiche sur mobile
+   - Le menu déroulant .nav-links.open passe devant tout
+   - La navbar reste devant le fond mais sous le menu ouvert
+----------------------------------------------------- */
+
+/* Cacher le burger sur desktop, afficher le menu horizontal */
+.hamburger {
+  display: none;
+}
+
+@media (min-width: 901px) {
+  .nav-links {
+    display: flex !important;
+    position: static;
+    flex-direction: row;
+    background: none;
+    box-shadow: none;
+    width: auto;
+    padding: 0;
+    gap: 2rem;
+    z-index: auto;
+  }
+  .hamburger {
+    display: none !important;
+  }
+}
+
+/* Afficher le menu burger et déroulant sur mobile */
+@media (max-width: 900px) {
+  .navbar {
+    position: relative;
+    z-index: 10;      /* Toujours devant le fond */
+  }
+  .hamburger {
+    display: block;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--color-accent);
+    margin-left: 1rem;
+    z-index: 1001;    /* Devant le fond & navbar */
+    position: relative; /* Pour que z-index fonctionne */
+  }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 4.2rem;        /* Ajuste à la hauteur de ta navbar */
+    right: 1.5rem;
+    background: var(--color-card);
+    border-radius: 1.1rem;
+    box-shadow: 0 0 14px #0003;
+    padding: 1.3rem 1.6rem;
+    min-width: 180px;
+    gap: 1.3rem;
+    /* Pas de z-index ici ! */
+  }
+  .nav-links.open {
+    display: flex;
+    z-index: 9999;    /* Passe devant tout */
+  }
+}
+
+/* Animation d’apparition du menu déroulant */
+@keyframes fadeInMenu {
+  from { opacity: 0; transform: translateY(-18px);}
+  to   { opacity: 1; transform: translateY(0);}
+}
+
