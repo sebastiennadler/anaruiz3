@@ -130,13 +130,14 @@ body {
     border-radius: 1.1rem;
     box-shadow: 0 0 14px #0003;
     padding: 1.3rem 1.6rem;
-    z-index: 999;
+    z-index: 9999;
     min-width: 180px;
     animation: fadeInMenu 0.45s;
     gap: 1.3rem;
   }
   .nav-links.open {
     display: flex;
+    z-index=9999;
   }
 }
 
@@ -395,7 +396,7 @@ footer {
   border-radius: 2.5rem;
   padding: 0.14em 0.34em 0.08em 0.34em;
   cursor: pointer;
-  z-index: 22;
+  z-index: 2;
   box-shadow: 0 2px 12px #0001;
   opacity: 0.87;
   transition: background 0.18s, box-shadow 0.15s;
@@ -597,6 +598,7 @@ main, .navbar, footer, .card, .welcome-content {
   color: #ffb700 !important;
 }
 
+
 /* -----------------------------------------------------
    MENU BURGER RESPONSIVE & Z-INDEX OPTIMISÉ
    -----------------------------------------------------
@@ -669,4 +671,46 @@ main, .navbar, footer, .card, .welcome-content {
   from { opacity: 0; transform: translateY(-18px);}
   to   { opacity: 1; transform: translateY(0);}
 }
+
+
+@media (max-width: 900px) {
+  .navbar {
+    position: relative;
+    z-index: 20;   /* Toujours devant le fond, mais sous le menu mobile */
+  }
+  .hamburger {
+    display: block;
+    position: relative;
+    z-index: 30;
+  }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;     /* Sous la navbar */
+    left: 0;
+    right: 0;
+    background: var(--color-card, #fff);
+    border-radius: 0 0 1.1rem 1.1rem;
+    box-shadow: 0 0 14px #0003;
+    padding: 1.3rem 1.6rem;
+    min-width: 180px;
+    gap: 1.3rem;
+    /* Pas de z-index ici ! */
+  }
+  .nav-links.open {
+    display: flex;
+    z-index: 9999 !important;  /* Passe devant TOUT */
+  }
+}
+
+/* Pour éviter que main, .card, etc. passent devant le menu mobile */
+main, .card, .welcome-content, footer {
+  position: relative;
+  z-index: 1;
+}
+.background-slideshow {
+  z-index: 0;
+}
+
 
