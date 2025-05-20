@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - Ana Ruiz</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="contact-bg">
+  <nav class="navbar">
+    <div class="nav-logo"><a href="index.html">Ana Ruiz</a></div>
+    <button id="menu-toggle" aria-label="Ouvrir le menu" class="hamburger">&#9776;</button>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="galeries.html">Galeries</a></li>
+      <li><a href="diaporama.html">Diaporama</a></li>
+      <li><a href="apropos.html">À propos</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button id="theme-toggle" aria-label="Changer de thème"></button>
+  </nav>
+  
+  <main class="contact-content">
+    <h1>Contact</h1>
+    <p>
+      Pour toute question, projet ou demande d’information, vous pouvez écrire à&nbsp;:<br>
+      <a href="mailto:ana.ruiz.peintre@gmail.com" class="mail">ana.ruiz.peintre@gmail.com</a>
+    </p>
+    <form class="contact-form" action="mailto:ana.ruiz.peintre@gmail.com" method="post" enctype="text/plain">
+      <input type="text" name="nom" placeholder="Votre nom" required>
+      <input type="email" name="email" placeholder="Votre email" required>
+      <textarea name="message" placeholder="Votre message..." required></textarea>
+      <button type="submit" class="btn">Envoyer</button>
+    </form>
+  </main>
+  <footer>
+    <p>&copy; 2025 Ana Ruiz. Tous droits réservés. | <a href="mentions-legales.html">Mentions légales</a></p>
+  </footer>
+  <script src="js/theme.js"></script>
+  <script src="js/menu.js"></script>
+</body>
+</html>

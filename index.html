@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accueil - Ana Ruiz</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="background-slideshow"></div>
+  <nav class="navbar">
+    <div class="nav-logo"><a href="index.html">Ana Ruiz</a></div>
+    <button id="menu-toggle" aria-label="Ouvrir le menu" class="hamburger">&#9776;</button>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="galeries.html">Galeries</a></li>
+      <li><a href="diaporama.html">Diaporama</a></li>
+      <li><a href="apropos.html">À propos</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button id="theme-toggle" aria-label="Changer de thème"></button>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <h1>Bienvenue dans l’univers d’Ana Ruiz</h1>
+      <p>
+        Découvrez l’œuvre d’Ana Ruiz, peintre et sculptrice. Plongez dans les galeries thématiques, explorez les créations au fil des années, et laissez-vous guider par la couleur, la matière et l’imaginaire.
+      </p>
+      <a class="btn" href="diaporama.html">Diaporama</a>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2025 Ana Ruiz. Tous droits réservés. | <a href="mentions-legales.html">Mentions légales</a></p>
+  </footer>
+  <script src="js/theme.js"></script>
+  <script src="js/menu.js"></script>
+  <script>
+    const images = [
+    "img/annapurna.jpg",
+    "img/au-dessous-du-volcan.jpg",
+    "img/eaux-rouges.jpg",
+    "img/le-vieux-dragonnier.jpg"
+    ];
+    
+    let currentIndex = 0;
+    const slideshowDiv = document.querySelector('.background-slideshow');
+    
+    function updateSlideshow() {
+      slideshowDiv.style.backgroundImage = `url('${images[currentIndex]}')`;
+      currentIndex = (currentIndex + 1) % images.length;
+    }
+    updateSlideshow();
+    setInterval(updateSlideshow, 5000); // Change toutes les 5 secondes
+  </script>
+</body>
+</html>

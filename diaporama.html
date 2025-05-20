@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diaporama - Ana Ruiz</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-logo"><a href="index.html">Ana Ruiz</a></div>
+    <button id="menu-toggle" aria-label="Ouvrir le menu" class="hamburger">&#9776;</button>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="galeries.html">Galeries</a></li>
+      <li><a href="diaporama.html">Diaporama</a></li>
+      <li><a href="apropos.html">À propos</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button id="theme-toggle" aria-label="Changer de thème"></button>
+  </nav>
+  
+  <main class="main-diaporama-immersif">
+    <!-- Bouton audio fixé en haut à droite -->
+    <div class="audio-fab" id="audio-toggle">
+      <span id="audio-icon">🎵</span>
+    </div>
+    <audio id="audio-diapo">
+      <source src="audio/diapo.mp3" type="audio/mp3">
+      Votre navigateur ne supporte pas l'audio.
+    </audio>
+    
+    <h1>Diaporama</h1>
+    <!-- Image plein écran au clic -->
+    <div class="diapo-container">
+      <img id="diapo-img" src="img/accueil.jpg" alt="Diaporama" class="diapo-img-immersif" title="Cliquez pour passer en plein écran">
+      <button id="fullscreen-btn" title="Plein écran" class="fullscreen-btn">⤢</button>
+    </div>
+    <p class="audio-note">Cliquez sur l’image ou le bouton pour afficher en plein écran.<br>
+    La musique est synchronisée au diaporama.</p>
+  </main>
+  <footer>
+    <p>&copy; 2025 Ana Ruiz. Tous droits réservés. | <a href="mentions-legales.html">Mentions légales</a></p>
+  </footer>
+  <script src="js/theme.js"></script>
+  <script src="js/diapo.js"></script>
+  <script src="js/menu.js"></script>
+  <script>
+    const audio = document.getElementById('audio-diapo');
+    const toggle = document.getElementById('audio-toggle');
+    const icon = document.getElementById('audio-icon');
+    let playing = false;
+    
+    toggle.onclick = function() {
+      if (!playing) {
+        audio.play();
+        icon.textContent = '⏸️'; // Change en pause
+      } else {
+        audio.pause();
+        icon.textContent = '🎵'; // Reviens à l'icône musique
+      }
+      playing = !playing;
+    }
+    audio.onended = function() {
+      icon.textContent = '🎵';
+      playing = false;
+    }
+  </script>
+</body>
+</html>
