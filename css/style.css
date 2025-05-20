@@ -42,7 +42,7 @@
   .nav-links {
     display: flex;
     list-style: none;
-    gap: 1.2rem;
+    gap: 2rem;
     margin: 0;
     padding: 0;
   }
@@ -59,6 +59,47 @@
     background: var(--color-accent);
     color: #fff;
   }
+
+  /* Menu burger (mobile) : masqué par défaut, affiché si .open */
+@media (max-width: 900px) {
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 68px; /* Ajuste selon la hauteur de ta navbar */
+    right: 1rem;
+    background: rgba(255,255,255,0.96);
+    box-shadow: 0 4px 16px rgba(80,80,120,0.08);
+    flex-direction: column;
+    border-radius: 1.2rem;
+    width: 80vw;
+    max-width: 340px;
+    padding: 1.3rem 1.5rem;
+    z-index: 999;
+    animation: fadeInMenu 0.5s;
+  }
+  .nav-links.open {
+    display: flex;
+  }
+}
+
+/* Animation d’apparition */
+@keyframes fadeInMenu {
+  from { opacity: 0; transform: translateY(-25px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+/* Option : pour cacher le menu sur desktop même si la classe open traîne */
+@media (min-width: 901px) {
+  .nav-links {
+    display: flex !important;
+    position: static;
+    flex-direction: row;
+    background: none;
+    box-shadow: none;
+    width: auto;
+    padding: 0;
+  }
+}
   #theme-toggle {
     margin-left: 1.2rem;
     background: var(--color-card);
