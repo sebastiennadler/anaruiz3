@@ -37,38 +37,45 @@ document.addEventListener("DOMContentLoaded", function() {
   let index = 0;
 
   function nextImage() {
+    if (!imgTag) return;
     imgTag.src = images[index];
     index = (index + 1) % images.length;
   }
 
-  function launchDiapo() {
-    if (!audio.duration || images.length === 0) return;
-    const duree = audio.duration;
+  function launchDiapo(duration) {
+    if (!imgTag || images.length === 0) return;
+    const duree = duration || 30; // durée par défaut si pas d'audio
     const tpsParImage = duree / images.length;
     index = 0;
     nextImage();
     if (interval) clearInterval(interval);
     interval = setInterval(() => {
       nextImage();
-      if (audio.currentTime >= audio.duration - 0.5) clearInterval(interval);
     }, tpsParImage * 1000);
   }
 
+  // Si audio présent, synchronise sur la durée de l'audio
   if (audio) {
-    audio.onloadedmetadata = launchDiapo;
-    audio.onplay = () => { launchDiapo(); imgTag.src = images[0]; };
+    audio.onloadedmetadata = () => launchDiapo(audio.duration);
+    audio.onplay = () => launchDiapo(audio.duration);
+  } else {
+    // Sinon, lance le diaporama avec une durée par défaut (ex: 30s)
+    launchDiapo(30);
   }
 
   // Affiche la première image au chargement
   if (imgTag) imgTag.src = images[0];
 
-  // Plein écran
+  // Plein écran compatible mobile/desktop
   function launchFullscreen() {
     const el = imgTag;
+    if (!el) return;
     if (el.requestFullscreen) el.requestFullscreen();
     else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
     else if (el.msRequestFullscreen) el.msRequestFullscreen();
+    else if (el.mozRequestFullScreen) el.mozRequestFullScreen();
   }
+
   if (imgTag) {
     imgTag.addEventListener("click", launchFullscreen);
     imgTag.addEventListener("touchend", launchFullscreen);
