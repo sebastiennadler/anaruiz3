@@ -64,11 +64,23 @@ document.addEventListener("DOMContentLoaded", function() {
   // Affiche la première image au chargement
   if (imgTag) imgTag.src = images[0];
 
+  function isIOS() {
+    return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  }
+
   // Plein écran sur le conteneur
   function launchFullscreen() {
     const container = document.getElementById("diapo-container");
     if (!container) return;
-    if (container.requestFullscreen) container.requestFullscreen();
+    if (isIOS()) {
+      // Pseudo plein écran pour iOS
+      container.classList.add("diapo-fake-fullscreen");
+      // Quitter le pseudo plein écran au tap
+      container.addEventListener("click", function exitFakeFS(e) {
+        container.classList.remove("diapo-fake-fullscreen");
+        container.removeEventListener("click", exitFakeFS);
+      });
+    } else if (container.requestFullscreen) container.requestFullscreen();
     else if (container.webkitRequestFullscreen) container.webkitRequestFullscreen();
     else if (container.msRequestFullscreen) container.msRequestFullscreen();
     else if (container.mozRequestFullScreen) container.mozRequestFullScreen();

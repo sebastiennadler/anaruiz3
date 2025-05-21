@@ -758,3 +758,22 @@ main, .card, .welcome-content, footer {
   display: block;
   margin: auto;
 }
+
+.diapo-fake-fullscreen {
+  position: fixed !important;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  z-index: 99999;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+.diapo-fake-fullscreen img {
+  max-width: 100vw;
+  max-height: 100vh;
+  width: auto;
+  height: auto;
+  display: block;
+}
