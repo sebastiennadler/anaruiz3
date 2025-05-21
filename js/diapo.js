@@ -64,8 +64,13 @@ document.addEventListener("DOMContentLoaded", function() {
   // Affiche la première image au chargement
   if (imgTag) imgTag.src = images[0];
 
+  // Affiche le message iOS si besoin
   function isIOS() {
     return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  }
+  if (isIOS()) {
+    const info = document.getElementById("ios-fullscreen-info");
+    if (info) info.style.display = "block";
   }
 
   // Plein écran sur le conteneur
