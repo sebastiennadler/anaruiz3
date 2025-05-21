@@ -724,3 +724,19 @@ main, .card, .welcome-content, footer {
   background: rgba(26, 34, 51, 0.93); /* Fond bleu nuit translucide */
   color: var(--color-fg);
 }
+@media (max-width: 900px) {
+  [data-theme="dark"] main,
+  [data-theme="dark"] .navbar,
+  [data-theme="dark"] footer,
+  [data-theme="dark"] .card,
+  [data-theme="dark"] .welcome-content,
+  [data-theme="dark"] .main-contact,
+  [data-theme="dark"] .main-apropos,
+  [data-theme="dark"] .main-mentions,
+  [data-theme="dark"] .contact-content,
+  [data-theme="dark"] .contact-form,
+  [data-theme="dark"] section {
+    background: rgba(26, 34, 51, 0.97) !important; /* Fond bleu nuit opaque */
+    color: var(--color-fg) !important;
+  }
+}
