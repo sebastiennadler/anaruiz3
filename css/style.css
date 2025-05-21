@@ -6,20 +6,20 @@
 ----------------------------------------------------- */
 
 :root {
-  --color-bg: #f7f7f9;         /* Fond général du site */
-  --color-fg: #20212a;         /* Couleur du texte */
-  --color-accent: #6173d6;     /* Couleur principale pour accents, boutons */
-  --color-link: #2543d6;       /* Couleur des liens */
-  --color-card: #fff;          /* Fond des cartes/blocs */
-  --color-border: #dadbe8;     /* Bordures douces */
+  --color-bg: #fff6e6;         /* Fond ivoire chaud */
+  --color-fg: #3b2200;         /* Texte brun foncé */
+  --color-accent: #e25822;     /* Accent orange brûlé */
+  --color-link: #b85c38;       /* Terracotta */
+  --color-card: #fff3d6;       /* Fond des blocs, beige chaud */
+  --color-border: #e6b07a;     /* Bordures dorées */
 }
 [data-theme="dark"] {
-  --color-bg: #22232c;
-  --color-fg: #ececff;
-  --color-accent: #90a7ee;
-  --color-link: #c3ceff;
-  --color-card: #282a3a;
-  --color-border: #444556;
+  --color-bg: #11151a;         /* Presque noir, bleu nuit très foncé */
+  --color-fg: #eaf6fb;         /* Bleu très clair pour le texte */
+  --color-accent: #21a0a0;     /* Bleu glacier pour les boutons/accents */
+  --color-link: #7fd7ff;       /* Bleu clair pour les liens */
+  --color-card: #1a2233;       /* Fond des blocs, bleu-gris foncé */
+  --color-border: #304674;     /* Bordures bleu-gris */
 }
 
 /* ----- Fond, police, transitions générales ----- */
@@ -432,20 +432,11 @@ footer {
 .main-mentions {
   max-width: 700px;
   margin: 2rem auto 2rem auto;
-  background: var(--color-card);
   border-radius: 1.7rem;
   box-shadow: 0 2px 16px #0002;
   padding: 2rem 1.5rem;
-  background-image: url('../images/photo-ana.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  /* Optionnel : pour améliorer la lisibilité du texte */
-  background-color: rgba(255,255,255,0.7);
-  background-blend-mode: lighten;
-  padding: 3rem 2rem;
-  border-radius: 1rem;
 }
+
 .main-contact h1, .main-apropos h1, .main-mentions h1 {
   font-size: 1.6rem;
   font-weight: 700;
@@ -599,12 +590,12 @@ main, .navbar, footer, .card, .welcome-content {
 ----------------------------------------------------- */
 [data-theme="dark"] a,
 [data-theme="dark"] .navbar a {
-  color: #ffe08a !important;
+  color: var(--color-link) !important;
   transition: color 0.2s;
 }
 [data-theme="dark"] a:hover,
 [data-theme="dark"] .navbar a:hover {
-  color: #ffb700 !important;
+  color: var(--color-accent) !important;
 }
 
 
@@ -720,4 +711,16 @@ main, .card, .welcome-content, footer {
 }
 .background-slideshow {
   z-index: 0;
+}
+.apropos-bg {
+  background: url('../img/photo-ana.jpg') center center no-repeat fixed;
+  background-size: cover;
+}
+[data-theme="dark"] main,
+[data-theme="dark"] .navbar,
+[data-theme="dark"] footer,
+[data-theme="dark"] .card,
+[data-theme="dark"] .welcome-content {
+  background: rgba(26, 34, 51, 0.93); /* Fond bleu nuit translucide */
+  color: var(--color-fg);
 }
