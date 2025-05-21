@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const audio = document.getElementById("audio-diapo");
   const imgTag = document.getElementById("diapo-img");
   const fullscreenBtn = document.getElementById("fullscreen-btn");
+  const container = document.getElementById("diapo-container");
   let interval = null;
   let index = 0;
 
@@ -42,49 +43,43 @@ document.addEventListener("DOMContentLoaded", function() {
     index = (index + 1) % images.length;
   }
 
-  function launchDiapo(duration) {
+  function launchDiapo() {
     if (!imgTag || images.length === 0) return;
-    const duree = duration || 30; // durée par défaut si pas d'audio
-    const tpsParImage = duree / images.length;
+    if (interval) clearInterval(interval);
+    const tpsParImage = 2; // 2 secondes par image
     index = 0;
     nextImage();
-    if (interval) clearInterval(interval);
-    interval = setInterval(() => {
-      nextImage();
-    }, tpsParImage * 1000);
+    interval = setInterval(nextImage, tpsParImage * 1000);
   }
 
-  // Si audio présent, synchronise sur la durée de l'audio
+  // Lance le diaporama dès le chargement (même sans audio)
   if (audio) {
     audio.onloadedmetadata = () => launchDiapo(audio.duration);
     audio.onplay = () => launchDiapo(audio.duration);
+    launchDiapo();
   } else {
-    // Sinon, lance le diaporama avec une durée par défaut (ex: 30s)
-    launchDiapo(30);
+    launchDiapo();
   }
 
   // Affiche la première image au chargement
   if (imgTag) imgTag.src = images[0];
 
-  // Plein écran compatible mobile/desktop
+  // Plein écran sur le conteneur
   function launchFullscreen() {
-    const el = imgTag;
-    if (!el) return;
-    if (el.requestFullscreen) el.requestFullscreen();
-    else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
-    else if (el.msRequestFullscreen) el.msRequestFullscreen();
-    else if (el.mozRequestFullScreen) el.mozRequestFullScreen();
+    if (!container) return;
+    if (container.requestFullscreen) container.requestFullscreen();
+    else if (container.webkitRequestFullscreen) container.webkitRequestFullscreen();
+    else if (container.msRequestFullscreen) container.msRequestFullscreen();
+    else if (container.mozRequestFullScreen) container.mozRequestFullScreen();
   }
 
   if (imgTag) {
     imgTag.addEventListener("click", launchFullscreen);
     imgTag.addEventListener("touchend", launchFullscreen);
   }
-  if (fullscreenBtn) {
-    fullscreenBtn.addEventListener("click", launchFullscreen);
-    fullscreenBtn.addEventListener("touchend", launchFullscreen);
-  }
 });
+
+
 
 
 

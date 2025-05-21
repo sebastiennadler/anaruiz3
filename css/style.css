@@ -740,3 +740,21 @@ main, .card, .welcome-content, footer {
     color: var(--color-fg) !important;
   }
 }
+/* Ajoute dans ton style.css */
+#diapo-container:fullscreen,
+#diapo-container:-webkit-full-screen {
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#diapo-container img {
+  max-width: 100vw;
+  max-height: 100vh;
+  width: auto;
+  height: auto;
+  display: block;
+  margin: auto;
+}
