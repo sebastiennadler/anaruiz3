@@ -60,10 +60,21 @@ function launchFullscreen() {
   else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
   else if (el.msRequestFullscreen) el.msRequestFullscreen();
 }
-imgTag.addEventListener("click", launchFullscreen);
-imgTag.addEventListener("touchend", launchFullscreen); // Pour mobile
-document.getElementById("fullscreen-btn").addEventListener("click", launchFullscreen);
-document.getElementById("fullscreen-btn").addEventListener("touchend", launchFullscreen); // Pour mobile
+if (imgTag) {
+  imgTag.addEventListener("click", launchFullscreen);
+  imgTag.addEventListener("touchend", function(e) {
+    e.preventDefault();
+    launchFullscreen();
+  });
+}
+var fsBtn = document.getElementById("fullscreen-btn");
+if (fsBtn) {
+  fsBtn.addEventListener("click", launchFullscreen);
+  fsBtn.addEventListener("touchend", function(e) {
+    e.preventDefault();
+    launchFullscreen();
+  });
+}
 
 
    
