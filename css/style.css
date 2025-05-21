@@ -436,6 +436,15 @@ footer {
   border-radius: 1.7rem;
   box-shadow: 0 2px 16px #0002;
   padding: 2rem 1.5rem;
+  background-image: url('../images/photo-ana.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* Optionnel : pour améliorer la lisibilité du texte */
+  background-color: rgba(255,255,255,0.7);
+  background-blend-mode: lighten;
+  padding: 3rem 2rem;
+  border-radius: 1rem;
 }
 .main-contact h1, .main-apropos h1, .main-mentions h1 {
   font-size: 1.6rem;
@@ -712,5 +721,3 @@ main, .card, .welcome-content, footer {
 .background-slideshow {
   z-index: 0;
 }
-
-
