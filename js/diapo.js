@@ -54,16 +54,17 @@ document.addEventListener("DOMContentLoaded", function() {
     audio.onloadedmetadata = launchDiapo;
     audio.onplay = () => { launchDiapo(); imgTag.src = images[0]; };
   
-    // Mode plein écran natif JS au clic ou bouton
-    function launchFullscreen() {
-      const el = imgTag;
-      if (el.requestFullscreen) el.requestFullscreen();
-      else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
-      else if (el.msRequestFullscreen) el.msRequestFullscreen();
-    }
-    imgTag.addEventListener("click", launchFullscreen);
-    document.getElementById("fullscreen-btn").addEventListener("click", launchFullscreen);
-  });
+function launchFullscreen() {
+  const el = imgTag;
+  if (el.requestFullscreen) el.requestFullscreen();
+  else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+  else if (el.msRequestFullscreen) el.msRequestFullscreen();
+}
+imgTag.addEventListener("click", launchFullscreen);
+imgTag.addEventListener("touchend", launchFullscreen); // Pour mobile
+document.getElementById("fullscreen-btn").addEventListener("click", launchFullscreen);
+document.getElementById("fullscreen-btn").addEventListener("touchend", launchFullscreen); // Pour mobile
+
 
    
   
