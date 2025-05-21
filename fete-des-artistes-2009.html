@@ -40,5 +40,31 @@
   </footer>
   <script src="js/theme.js"></script>
   <script src="js/menu.js"></script>
+  <script>
+  function isIOS() {
+    return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  }
+  document.addEventListener("DOMContentLoaded", function() {
+    document.querySelectorAll('.galerie-img').forEach(function(img) {
+      img.addEventListener('click', function() {
+        if (isIOS()) {
+          // Crée un conteneur temporaire pour le pseudo plein écran
+          const fakeFS = document.createElement('div');
+          fakeFS.className = 'diapo-fake-fullscreen';
+          const clone = img.cloneNode(true);
+          fakeFS.appendChild(clone);
+          document.body.appendChild(fakeFS);
+          // Quitter le pseudo plein écran au tap
+          fakeFS.addEventListener('click', function exitFakeFS() {
+            fakeFS.remove();
+          });
+        } else if (img.requestFullscreen) img.requestFullscreen();
+        else if (img.webkitRequestFullscreen) img.webkitRequestFullscreen();
+        else if (img.msRequestFullscreen) img.msRequestFullscreen();
+        else if (img.mozRequestFullScreen) img.mozRequestFullScreen();
+      });
+    });
+  });
+  </script>
 </body>
 </html>
