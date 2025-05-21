@@ -66,6 +66,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Plein écran sur le conteneur
   function launchFullscreen() {
+    const container = document.getElementById("diapo-container");
     if (!container) return;
     if (container.requestFullscreen) container.requestFullscreen();
     else if (container.webkitRequestFullscreen) container.webkitRequestFullscreen();
